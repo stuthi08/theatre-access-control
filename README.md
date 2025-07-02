@@ -1,69 +1,61 @@
 # 🎬 Age and Emotion Detector for Movie Theatre Access Control
 
-A real-time machine learning application that predicts a person's **age** and **emotion** from live webcam input and restricts access to horror movie theatres based on age limits. Individuals under 13 or above 60 are denied entry and marked with a red rectangle, while others are allowed, with their emotion displayed.
+A real-time computer vision tool that uses machine learning to detect a person's age and emotion using webcam input. If the person is **under 13** or **over 60**, access is denied, an alarm is triggered, and a red box is shown. If the person is within the valid age range, their **emotion** is predicted and all data is **logged into a CSV file**.
 
 ---
 
-## 📌 Project Objective
+## 📌 Objective
 
-To build an intelligent, real-time tool that automates age restriction enforcement in movie theatres using machine learning and computer vision. The tool also logs each detected individual's age, emotion (if eligible), and entry timestamp into a CSV file for reporting.
+To automate age-based access control at horror movie theatres using AI, ensuring safety and compliance with age restrictions by integrating facial analysis and real-time alerts.
 
 ---
 
 ## 🎯 Features
 
-- 📷 Real-time face detection via webcam
-- 🔢 Age prediction using a CNN regression model
-- 😐 Emotion classification using CNN trained on FER-2013
-- ❌ Restrict access for:
+- 📷 Real-time webcam face detection using OpenCV
+- 🔢 Age prediction using CNN (`age_predictor_model.h5`)
+- 😐 Emotion recognition using CNN trained on FER-2013
+- ❌ Deny access if:
   - Age < 13
   - Age > 60
-- ✅ Allow and display emotion for age 13–60
-- 🧾 Log:
-  - Age
-  - Emotion
-  - Entry time
-- 📁 Save logs in `CSV` format
-- 🧠 Model accuracy: ~70% (for both age and emotion)
+- 🚨 Alarm sound (from `alert.mp3`) for denied entry
+- ✅ Show emotion for users aged 13–60
+- 🧾 Log: Age, Emotion, Timestamp, Access Status to CSV
+- 📁 All logs and evidence saved for review
+- 🧠 Accuracy: ~70% for both age and emotion
 
 ---
 
 ## 🗂️ Project Structure
 
-| Folder / File             | Description                                                        |
-|---------------------------|--------------------------------------------------------------------|
-| `models/`                 | Trained models: `age_model.h5`, `emotion_model.h5`                |
-| `outputs/`                | Screenshots and logs: `above60.jpg`, `under10.jpg`, `log.csv`     |
-|                
-|  `main.py`             | Main entry script with webcam detection                           |
-| `age_predictor.py`    | Module for age prediction                                          |
-|  `emotion_detector.py` | Module for emotion classification                                  |
-| `logger.py`           | Handles CSV logging                                                |
-| `utils.py`            | Utilities (face detection, preprocessing, etc.)                    |
-| `requirements.txt`        | List of required Python packages                                   |
-| `README.md`               | This documentation file                                            |
+| File / Folder                     | Description                                               |
+|----------------------------------|-----------------------------------------------------------|
+| `age_predictor_model.h5`         | Trained CNN model for age prediction                     |
+| `emotion_detector_model.h5`      | Trained CNN model for emotion detection                  |
+| `alert.mp3`                      | Alarm sound file for denied entries                      |
+| `age-det.ipynb`                  | Jupyter notebook for age detection testing               |
+| `emotion-detection3.ipynb`       | Jupyter notebook for emotion detection                   |
+| `gui.py`                         | Python GUI script (optional interface)                   |
+| `emotion_detection3/` (if folder)| Supporting code for emotion detection (if applicable)    |
+| `haarcascade_frontalface_default.xml` | Haar Cascade for face detection                     |
+| `requirement.txt`               | List of Python dependencies                              |
+| `report.pdf`                     | Final internship report                                  |
+| `yolov8n-face.pt`                | YOLOv8 face detection weights (optional for torso/dress) |
 
 ---
 
 ## 🧠 Model Architecture
 
-- **Age Detection**: Custom CNN regression model
-- **Emotion Detection**: CNN classifier trained on FER-2013
-- **Face Detection**: OpenCV Haar cascade or DNN
+- **Age Model**: Custom CNN trained on facial age dataset
+- **Emotion Model**: FER-2013 based emotion classification
+- **Face Detection**: OpenCV Haar cascade or YOLOv8
+- **Audio Alert**: Played using `pygame` or `playsound`
 
 ---
 
-## 📸 Sample Outputs
+## ▶️ How to Run
 
-| Age > 60 (Denied) | Age < 13 (Denied) |
-|-------------------|-------------------|
-| ![Above 60](outputs/above60.jpg) | ![Under 10](outputs/under10.jpg) |
-
----
-
-## ⚙️ Installation
+### 1. Install Dependencies
 
 ```bash
-git clone https://github.com/your-username/age-emotion-detector.git
-cd age-emotion-detector
-pip install -r requirements.txt
+pip install -r requirement.txt
