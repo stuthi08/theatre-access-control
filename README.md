@@ -34,12 +34,12 @@ To build an intelligent, real-time tool that automates age restriction enforceme
 |---------------------------|--------------------------------------------------------------------|
 | `models/`                 | Trained models: `age_model.h5`, `emotion_model.h5`                |
 | `outputs/`                | Screenshots and logs: `above60.jpg`, `under10.jpg`, `log.csv`     |
-| `src/`                    | Source code files for logic and processing                         |
-| ├── `main.py`             | Main entry script with webcam detection                           |
-| ├── `age_predictor.py`    | Module for age prediction                                          |
-| ├── `emotion_detector.py` | Module for emotion classification                                  |
-| ├── `logger.py`           | Handles CSV logging                                                |
-| └── `utils.py`            | Utilities (face detection, preprocessing, etc.)                    |
+|                
+|  `main.py`             | Main entry script with webcam detection                           |
+| `age_predictor.py`    | Module for age prediction                                          |
+|  `emotion_detector.py` | Module for emotion classification                                  |
+| `logger.py`           | Handles CSV logging                                                |
+| `utils.py`            | Utilities (face detection, preprocessing, etc.)                    |
 | `requirements.txt`        | List of required Python packages                                   |
 | `README.md`               | This documentation file                                            |
 
